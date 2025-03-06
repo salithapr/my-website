@@ -1,32 +1,127 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="si">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="01.css">
-    <title> Salitha Technic</title>
-
-    <link rel="apple-touch-icon" sizes="180x180" href="D:\music downloader\Chanel logo.jpg">
-    <link rel="icon" type="image/png" sizes="32x32" href="D:\music downloader\Chanel logo.jpg">
-    <link rel="icon" type="image/png" sizes="16x16" href="D:\music downloader\Chanel logo.jpg">
-    
+    <title>කාලසටහන කළමනාකරණය</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 20px;
+        }
+        h1 {
+            text-align: center;
+            color: #333;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+        th {
+            background-color: #007bff;
+            color: white;
+        }
+        tr:hover {
+            background-color: #f1f1f1;
+        }
+        .form-container {
+            margin-bottom: 20px;
+        }
+        .form-container input {
+            padding: 8px;
+            margin-right: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        .form-container button {
+            padding: 8px 12px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .form-container button:hover {
+            background-color: #0056b3;
+        }
+        .delete-btn {
+            background-color: #ff4d4d;
+            color: white;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        .delete-btn:hover {
+            background-color: #cc0000;
+        }
+    </style>
 </head>
-<header>
-    <h1>Welcome to Salitha Technic Website</h1>
-</header>
-<nav>
-    <ul>
-        <li><a href="file:///D:/music%20downloader/index.html">Home</a></li>
-        <li><a href="#">About</a></li>
-        <li><a href="#">Events</a></li>
-        <li><a href="#">Gallery</a></li>
-        <li><a href="#">Contact</a></li>
-    </ul>
-</nav>
-    <body>
-        <video align="cente" width="640" height="480" src="salitha technic video editing.mp4" controls>
-          <code>video</code>,
-              <a href="https://archive.org/details/Popeye_forPresident" target="_blank">Capcut video editing </a>.
-             </video>
-    </body>  
-</html>
+<body>
+    <h1>කාලසටහන කළමනාකරණය</h1>
+    <div class="form-container">
+        <input type="text" id="date" placeholder="දිනය (උදා: සඳුදා)">
+        <input type="text" id="task" placeholder="කාර්‍යය">
+        <input type="text" id="time" placeholder="වේලාව (උදා: 7:00 PM)">
+        <button onclick="addTask()">එකතු කරන්න</button>
+    </div>
+    <table id="scheduleTable">
+        <thead>
+            <tr>
+                <th>දිනය</th>
+                <th>කාර්‍යය</th>
+                <th>වේලාව</th>
+                <th>ක්‍රියා</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- Tasks will be added here dynamically -->
+        </tbody>
+    </table>
+
+    <script>
+        // Function to add a new task
+        function addTask() {
+            const date = document.getElementById('date').value;
+            const task = document.getElementById('task').value;
+            const time = document.getElementById('time').value;
+
+            if (date && task && time) {
+                const table = document.getElementById('scheduleTable').getElementsByTagName('tbody')[0];
+                const newRow = table.insertRow();
+
+                const cell1 = newRow.insertCell(0);
+                const cell2 = newRow.insertCell(1);
+                const cell3 = newRow.insertCell(2);
+                const cell4 = newRow.insertCell(3);
+
+                cell1.innerHTML = date;
+                cell2.innerHTML = task;
+                cell3.innerHTML = time;
+                cell4.innerHTML = '<button class="delete-btn" onclick="deleteTask(this)">මකන්න</button>';
+
+                // Clear input fields
+                document.getElementById('date').value = '';
+                document.getElementById('task').value = '';
+                document.getElementById('time').value = '';
+            } else {
+                alert('කරුණාකර සියලුම ක්ෂේත්‍ර පුරවන්න!');
+            }
+        }
+
+        // Function to delete a task
+        function deleteTask(button) {
+            const row = button.parentElement.parentElement;
+            row.remove();
+        }
+    </script>
+</body>
+            </html>
